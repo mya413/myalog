@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import Basic from "./layout/Basic";
 import Readme from "./pages/Readme";
@@ -6,7 +6,7 @@ import Portfolio from "./pages/Portfolio";
 
 export default function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <GlobalStyle />
       <Routes>
         <Route element={<Basic />}>
@@ -14,6 +14,6 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
