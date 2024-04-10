@@ -2,6 +2,7 @@
   "name": "myalog",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://mya413.github.io/myalog/",
   "type": "module",
   "scripts": {
     "dev": "vite",
