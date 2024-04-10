@@ -10,7 +10,7 @@ export default function App() {
       <GlobalStyle />
       <Routes>
         <Route element={<Basic />}>
-          <Route path="/" element={<Readme />} />
+          <Route path="/myalog" element={<Readme />} />
           <Route path="/portfolio" element={<Portfolio />} />
         </Route>
       </Routes>
