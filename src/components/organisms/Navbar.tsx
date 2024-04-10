@@ -12,7 +12,7 @@ export default function Navbar({ openMenu, setOpenMenu }: NavbarType) {
     <NavbarStyle openMenu={openMenu}>
       {openMenu && <Button openMenu={openMenu} setOpenMenu={setOpenMenu} />}
       <div>
-        <Link to="/">README.md</Link>
+        <Link to="/myalog">README.md</Link>
         <Link to="/portfolio">Portfolio</Link>
         <Link to="https://github.com/mya413" target="_blank">
           Github
