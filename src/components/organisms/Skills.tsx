@@ -13,6 +13,10 @@ const SkillsStyle = styled.div`
   height: 550px;
   overflow: auto;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @media screen and (max-width: 1024px) {
     height: 460px;
   }
