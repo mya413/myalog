@@ -5,14 +5,14 @@ import profileImg from "@/assets/profileImg.png";
 import Button from "@/components/atoms/Button";
 
 interface SidebarType {
-  openMenu: boolean;
+  $openMenu: boolean;
   setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Sidebar({ openMenu, setOpenMenu }: SidebarType) {
+export default function Sidebar({ $openMenu, setOpenMenu }: SidebarType) {
   return (
     <SidebarStyle>
-      {!openMenu && <Button openMenu={openMenu} setOpenMenu={setOpenMenu} />}
+      {!$openMenu && <Button $openMenu={$openMenu} setOpenMenu={setOpenMenu} />}
       <ImgBlock>
         <img src={profileImg} alt="프로필 사진" />
       </ImgBlock>

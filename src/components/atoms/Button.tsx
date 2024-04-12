@@ -2,19 +2,19 @@ import { styled } from "styled-components";
 import { IoClose, IoMenu } from "react-icons/io5";
 
 interface ButtonType {
-  openMenu: boolean;
+  $openMenu: boolean;
   setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Button({ openMenu, setOpenMenu }: ButtonType) {
+export default function Button({ $openMenu, setOpenMenu }: ButtonType) {
   return (
     <ButtonStyle
       type="button"
       onClick={() => {
-        setOpenMenu(!openMenu);
+        setOpenMenu(!$openMenu);
       }}
     >
-      {openMenu ? <IoClose /> : <IoMenu />}
+      {$openMenu ? <IoClose /> : <IoMenu />}
     </ButtonStyle>
   );
 }

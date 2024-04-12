@@ -3,14 +3,14 @@ import { styled } from "styled-components";
 import Button from "@/components/atoms/Button";
 
 interface NavbarType {
-  openMenu: boolean;
+  $openMenu: boolean;
   setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Navbar({ openMenu, setOpenMenu }: NavbarType) {
+export default function Navbar({ $openMenu, setOpenMenu }: NavbarType) {
   return (
-    <NavbarStyle openMenu={openMenu}>
-      {openMenu && <Button openMenu={openMenu} setOpenMenu={setOpenMenu} />}
+    <NavbarStyle $openMenu={$openMenu}>
+      {$openMenu && <Button $openMenu={$openMenu} setOpenMenu={setOpenMenu} />}
       <div>
         <Link to="/">README.md</Link>
         <Link to="/portfolio">Portfolio</Link>
@@ -25,9 +25,9 @@ export default function Navbar({ openMenu, setOpenMenu }: NavbarType) {
   );
 }
 
-const NavbarStyle = styled.nav<{ openMenu: boolean }>`
+const NavbarStyle = styled.nav<{ $openMenu: boolean }>`
   background-color: #eee;
-  width: ${(props) => (props.openMenu ? "25%" : "0")};
+  width: ${(props) => (props.$openMenu ? "25%" : "0")};
   height: 100%;
   border-bottom-left-radius: 20px;
   position: absolute;
@@ -63,7 +63,7 @@ const NavbarStyle = styled.nav<{ openMenu: boolean }>`
   }
 
   @media screen and (max-width: 1024px) {
-    width: ${(props) => (props.openMenu ? "100%" : "0")};
+    width: ${(props) => (props.$openMenu ? "100%" : "0")};
     border-bottom-right-radius: 20px;
   }
 
