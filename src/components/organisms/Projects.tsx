@@ -20,10 +20,10 @@ const ProjectsStyle = styled.div`
   & > div:last-child {
     height: 550px;
     overflow: auto;
-  }
 
-  &::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @media screen and (max-width: 1024px) {
