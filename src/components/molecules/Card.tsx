@@ -1,23 +1,41 @@
 import styled from "styled-components";
 import { cardList } from "@/utils/cardList";
 
-export default function Card() {
+interface CardProps {
+  selected: string;
+}
+
+export default function Card({ selected }: CardProps) {
+  const filteredCard =
+    selected === "default" || selected === "All"
+      ? cardList
+      : cardList.filter((card) => card.tag === selected);
+
   return (
     <CardStyle>
-      {cardList.map((card) => (
+      {filteredCard.map((card) => (
         <li key={card.id}>
           <CardInnerBlock>
             <div>
               <img src={card.thumbnail} alt="thumbnail image" />
-              <span>{card.tag}</span>
+              <span
+                className={
+                  card.tag === "Experience"
+                    ? "blue"
+                    : card.tag === "Team"
+                    ? "yellow"
+                    : ""
+                }
+              >
+                {card.tag}
+              </span>
             </div>
             <div>
               <span>{card.title}</span>
               <span>{card.description}</span>
-
               <span>
                 {card.skills.map((skill, idx) =>
-                  idx === card.skills.length - 1 ? skill : `${skill} / `
+                  idx === card.skills.length - 1 ? skill : `${skill} | `
                 )}
               </span>
             </div>
@@ -71,6 +89,7 @@ const CardInnerBlock = styled.div`
       width: 100%;
       height: 200px;
       object-fit: contain;
+      padding: 0 20px;
     }
 
     & > span {
@@ -78,11 +97,19 @@ const CardInnerBlock = styled.div`
       left: 0;
       top: 0;
       border-top-left-radius: 10px;
-      background-color: #222;
+      background-color: #5d6066;
       color: #fff;
       padding: 10px;
       font-size: 10px;
       font-weight: 500;
+    }
+
+    & > span.blue {
+      background-color: #5b8eda;
+    }
+
+    & > span.yellow {
+      background-color: #fab95d;
     }
   }
 
@@ -105,13 +132,17 @@ const CardInnerBlock = styled.div`
       font-weight: 600;
     }
 
+    & > span:nth-child(2) {
+      line-height: 1.5;
+    }
+
     & > span:last-child {
       display: block;
-      padding: 10px;
+      padding: 5px 10px;
       background-color: #ddd;
       border-radius: 10px;
-      font-size: 12px;
       font-weight: 500;
+      margin-top: 5px;
       line-height: 1.5;
     }
   }
