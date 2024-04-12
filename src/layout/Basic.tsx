@@ -33,7 +33,6 @@ export default function Basic() {
 
 const BasicStyle = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,6 +79,7 @@ const BasicStyle = styled.div`
 
 const MainStyle = styled.main`
   width: 900px;
+  height: 621px;
   display: flex;
   flex-direction: column;
   padding: 50px;
@@ -95,8 +95,6 @@ const MainStyle = styled.main`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 20px;
-
     & > div {
       height: 520px;
     }
