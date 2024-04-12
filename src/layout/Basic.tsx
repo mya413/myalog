@@ -87,7 +87,7 @@ const MainStyle = styled.main`
     width: 100%;
 
     & > div {
-      height: 460px;
+      height: 480px;
       overflow: hidden;
     }
   }
@@ -96,7 +96,7 @@ const MainStyle = styled.main`
     padding: 20px;
 
     & > div {
-      height: 520px;
+      height: 500px;
     }
   }
 `;
