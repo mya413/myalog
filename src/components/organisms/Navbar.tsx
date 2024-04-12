@@ -27,7 +27,7 @@ export default function Navbar({ openMenu, setOpenMenu }: NavbarType) {
 
 const NavbarStyle = styled.nav<{ openMenu: boolean }>`
   background-color: #eee;
-  width: ${(props) => (props.openMenu ? "30.5%" : "0")};
+  width: ${(props) => (props.openMenu ? "25%" : "0")};
   height: 100%;
   border-bottom-left-radius: 20px;
   position: absolute;

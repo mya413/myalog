@@ -11,11 +11,11 @@ export default function Footer() {
 }
 
 const FooterStyle = styled.footer`
-  width: 100%;
+  width: 20%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   position: absolute;
-  left: 0;
+  left: 4%;
   bottom: 20px;
 
   & > p {
@@ -25,5 +25,11 @@ const FooterStyle = styled.footer`
     & > span {
       font-weight: 500;
     }
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    justify-content: center;
+    left: 0;
   }
 `;
