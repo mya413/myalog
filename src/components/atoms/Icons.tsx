@@ -1,9 +1,8 @@
-// import { styled } from "styled-components";
+import styled from "styled-components";
 import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { RiJavascriptFill } from "react-icons/ri";
 import { BiLogoTypescript } from "react-icons/bi";
 import { SiStyledcomponents } from "react-icons/si";
-import styled from "styled-components";
 
 export default function Icons() {
   return (
@@ -36,7 +35,10 @@ const iconList = [
     id: 5,
     icon: <FaCss3Alt />,
   },
-  { id: 6, icon: <SiStyledcomponents /> },
+  {
+    id: 6,
+    icon: <SiStyledcomponents />,
+  },
 ];
 
 const IconStyle = styled.ul``;
