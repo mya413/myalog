@@ -39,6 +39,8 @@ const SelectStyle = styled.div`
     font-size: 12px;
     outline-color: #222;
     border-color: #ddd;
+    border-radius: 5px;
+    color: #222;
   }
 
   @media screen and (max-width: 768px) {
