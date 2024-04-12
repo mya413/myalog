@@ -11,15 +11,15 @@ export default function Basic() {
   const location = useLocation();
   const path = location.pathname;
 
-  const [openMenu, setOpenMenu] = useState(false);
+  const [$openMenu, setOpenMenu] = useState(false);
 
   return (
     <BasicStyle>
       <div>
         <Header path={path} />
         <div>
-          <Navbar openMenu={openMenu} setOpenMenu={setOpenMenu} />
-          <Sidebar openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <Navbar $openMenu={$openMenu} setOpenMenu={setOpenMenu} />
+          <Sidebar $openMenu={$openMenu} setOpenMenu={setOpenMenu} />
           <MainStyle>
             <Title path={path} />
             <Outlet />
