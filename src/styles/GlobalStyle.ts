@@ -62,6 +62,16 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     z-index: 1;
   }
+  input, textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+  }
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+  }
 `;
 
 export default GlobalStyle;
