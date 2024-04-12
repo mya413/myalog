@@ -86,11 +86,11 @@ const MainStyle = styled.main`
 
   @media screen and (max-width: 1024px) {
     width: 100%;
-    padding: 30px;
+    padding: 40px;
 
     & > div {
       height: 460px;
-      overflow: auto;
+      overflow: hidden;
     }
   }
 

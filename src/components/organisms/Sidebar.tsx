@@ -58,7 +58,7 @@ const linkList = [
 ];
 
 const SidebarStyle = styled.aside`
-  width: 400px;
+  width: 300px;
   border-right: 1px solid #eee;
   position: relative;
 
@@ -86,6 +86,7 @@ const ImgBlock = styled.div`
     width: 200px;
     height: 200px;
     margin-top: 50px;
+    border-radius: 100%;
   }
 
   @media screen and (max-width: 1024px) {
