@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import Projects from "../organisms/Projects";
 import Skills from "../organisms/Skills";
-import Experience from "../organisms/Experience";
 
 export default function Tab() {
   const [isActive, setIsActive] = useState(TabList[0].id);
@@ -32,8 +31,7 @@ export default function Tab() {
 
 const TabList = [
   { id: 1, tab: "Projects", component: <Projects /> },
-  { id: 2, tab: "Experience", component: <Experience /> },
-  { id: 3, tab: "Skills", component: <Skills /> },
+  { id: 2, tab: "Skills", component: <Skills /> },
 ];
 
 const TabStyle = styled.div`
