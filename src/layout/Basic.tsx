@@ -95,6 +95,8 @@ const MainStyle = styled.main`
   }
 
   @media screen and (max-width: 768px) {
+    padding: 20px;
+
     & > div {
       height: 520px;
     }

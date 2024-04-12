@@ -73,6 +73,9 @@ const CardStyle = styled.ul`
   }
 
   @media screen and (max-width: 768px) {
+    & > li {
+      height: 300px;
+    }
   }
 `;
 
@@ -144,6 +147,20 @@ const CardInnerBlock = styled.div`
       font-weight: 500;
       margin-top: 5px;
       line-height: 1.5;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    & > div:first-child {
+      height: 300px;
+
+      & > img {
+        height: 300px;
+      }
+    }
+
+    & > div:last-child {
+      height: 300px;
     }
   }
 `;
