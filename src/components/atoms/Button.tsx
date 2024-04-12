@@ -21,8 +21,8 @@ export default function Button({ $openMenu, setOpenMenu }: ButtonType) {
 
 const ButtonStyle = styled.button`
   position: absolute;
-  top: 50px;
-  right: 20px;
+  top: 30px;
+  right: 30px;
 
   & > svg {
     font-size: 24px;

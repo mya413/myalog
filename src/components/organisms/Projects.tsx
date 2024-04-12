@@ -18,7 +18,7 @@ export default function Projects() {
 
 const ProjectsStyle = styled.div`
   & > div:last-child {
-    height: 550px;
+    height: 580px;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -28,7 +28,7 @@ const ProjectsStyle = styled.div`
 
   @media screen and (max-width: 1024px) {
     & > div:last-child {
-      height: 460px;
+      height: 470px;
     }
   }
 

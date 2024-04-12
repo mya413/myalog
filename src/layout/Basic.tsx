@@ -79,14 +79,12 @@ const BasicStyle = styled.div`
 
 const MainStyle = styled.main`
   width: 900px;
-  height: 621px;
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding: 30px;
 
   @media screen and (max-width: 1024px) {
     width: 100%;
-    padding: 40px;
 
     & > div {
       height: 460px;

@@ -85,7 +85,7 @@ const ImgBlock = styled.div`
   & > img {
     width: 200px;
     height: 200px;
-    margin-top: 50px;
+    margin-top: 80px;
     border-radius: 100%;
   }
 
