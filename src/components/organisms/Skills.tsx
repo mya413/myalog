@@ -1,27 +1,51 @@
 import styled from "styled-components";
-import Icons from "../atoms/Icons";
+import FeIcons from "../molecules/FeIcons";
+import ToolIcons from "../molecules/ToolIcons";
 
 export default function Skills() {
   return (
     <SkillsStyle>
-      <Icons />
+      <div>
+        <span>Front-end</span>
+        <FeIcons />
+      </div>
+      <div>
+        <span>Tool</span>
+        <ToolIcons />
+      </div>
     </SkillsStyle>
   );
 }
 
 const SkillsStyle = styled.div`
-  height: 550px;
+  height: 580px;
   overflow: auto;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
+  & > div {
+    display: flex;
+    flex-direction: column;
+    & > span {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+      text-align: center;
+      background-color: #eee;
+      padding: 10px;
+      margin-bottom: 5px;
+      border-radius: 10px;
+    }
+  }
+
   @media screen and (max-width: 1024px) {
-    height: 460px;
+    height: 410px;
   }
 
   @media screen and (max-width: 768px) {
-    height: 520px;
+    height: 430px;
   }
 `;
