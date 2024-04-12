@@ -67,11 +67,6 @@ const GlobalStyle = createGlobalStyle`
     -webkit-appearance: none;
     -webkit-border-radius: 0;
   }
-  select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none; 
-  }
 `;
 
 export default GlobalStyle;
