@@ -2,6 +2,7 @@ import thumbnailImg1 from "@/assets/portfolio1.png";
 import thumbnailImg2 from "@/assets/portfolio2.png";
 import thumbnailImg3 from "@/assets/portfolio3.png";
 import thumbnailImg4 from "@/assets/portfolio4.png";
+import thumbnailImg5 from "@/assets/portfolio5.png";
 
 export const cardList = [
   {
@@ -43,14 +44,14 @@ export const cardList = [
     description: "대한민국의 현재 날씨 및 시간 정보 제공 서비스",
     skills: ["React", "TypeScript", "Styled-components"],
   },
-  // {
-  //   id: 5,
-  //   thumbnail: "",
-  //   tag: "Personal",
-  //   title: "5번 프로젝트",
-  //   description: "5번 입니다.",
-  //   skills: ["react", "typescript"],
-  // },
+  {
+    id: 5,
+    thumbnail: `${thumbnailImg5}`,
+    tag: "Personal",
+    title: "✍🏻 MYALOG",
+    description: "개인 포트폴리오 사이트",
+    skills: ["React", "TypeScript", "Styled-components", "Vite"],
+  },
   // {
   //   id: 6,
   //   thumbnail: "",
