@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../../public/favicon.svg";
 
@@ -9,10 +10,10 @@ export default function Header({ path }: HeaderType) {
   return (
     <HeaderStyle>
       <HeaderTopStyle>
-        <div>
+        <Link to="/">
           <img src={logo} alt="logo" />
           <span>MYALOG</span>
-        </div>
+        </Link>
       </HeaderTopStyle>
       <HeaderBottomStyle>
         <div>
@@ -48,7 +49,7 @@ const HeaderTopStyle = styled.div`
   width: 100%;
   padding-top: 10px;
 
-  & > div {
+  & > a {
     width: 222px;
     height: 35px;
     background-color: #fff;
