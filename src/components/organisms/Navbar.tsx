@@ -14,6 +14,12 @@ export default function Navbar({ $openMenu, setOpenMenu }: NavbarType) {
       <div>
         <Link to="/">README.md</Link>
         <Link to="/portfolio">Portfolio</Link>
+        <Link
+          to="https://www.rallit.com/resumes/65743@lsm940413/%EC%9D%B4%EC%8A%B9%EB%AF%B8"
+          target="_blank"
+        >
+          Resume
+        </Link>
         <Link to="https://github.com/mya413" target="_blank">
           Github
         </Link>

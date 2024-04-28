@@ -32,6 +32,13 @@ export default function Readme() {
           <span>Portfolio</span>
           <FaArrowRight />
         </Link>
+        <Link
+          to="https://www.rallit.com/resumes/65743@lsm940413/%EC%9D%B4%EC%8A%B9%EB%AF%B8"
+          target="_blank"
+        >
+          <span>Resume</span>
+          <FaArrowRight />
+        </Link>
         <Link to="https://github.com/mya413" target="_blank">
           <span>Github</span>
           <FaArrowRight />
@@ -46,6 +53,8 @@ export default function Readme() {
 }
 
 const ReadmeStyle = styled.div`
+  height: 100%;
+  overflow: auto;
   color: #222;
 
   & > p {
@@ -65,13 +74,15 @@ const ReadmeStyle = styled.div`
 
     & > a {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
       background-color: #eee;
       padding: 10px 20px;
       border-radius: 20px;
       font-weight: 400;
       font-size: 14px;
-      margin-right: 10px;
+      margin-right: 5px;
 
       & > svg {
         margin-left: 5px;

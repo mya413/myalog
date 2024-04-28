@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import FeIcons from "../molecules/FeIcons";
-import ToolIcons from "../molecules/ToolIcons";
+import FeIcons from "@/components/molecules/skills/FeIcons";
+import ToolIcons from "@/components/molecules/skills/ToolIcons";
 
 export default function Skills() {
   return (

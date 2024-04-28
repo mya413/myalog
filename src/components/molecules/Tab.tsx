@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Projects from "../organisms/Projects";
-import Skills from "../organisms/Skills";
+// import Skills from "../organisms/Skills";
 
 export default function Tab() {
-  const [isActive, setIsActive] = useState(TabList[0].id);
+  const [isActive, setIsActive] = useState(tabList[0].id);
 
   const tabClickHandler = (id: number) => {
     setIsActive(id);
@@ -12,7 +12,7 @@ export default function Tab() {
   return (
     <TabStyle>
       <ul>
-        {TabList.map((tab) => (
+        {tabList.map((tab) => (
           <li
             key={tab.id}
             className={tab.id === isActive ? "active" : ""}
@@ -22,16 +22,16 @@ export default function Tab() {
           </li>
         ))}
       </ul>
-      {TabList.map((tab) => (
+      {tabList.map((tab) => (
         <div key={tab.id}>{tab.id === isActive ? tab.component : null}</div>
       ))}
     </TabStyle>
   );
 }
 
-const TabList = [
+const tabList = [
   { id: 1, tab: "Projects", component: <Projects /> },
-  { id: 2, tab: "Skills", component: <Skills /> },
+  // { id: 2, tab: "Skills", component: <Skills /> },
 ];
 
 const TabStyle = styled.div`

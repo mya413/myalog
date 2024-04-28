@@ -1,48 +1,87 @@
+import { useEffect, useState, MouseEventHandler } from "react";
 import styled from "styled-components";
-import { cardList } from "@/utils/cardList";
+import { ProjectsDataProps, projectsData } from "@/data/projectsData";
+import Modal from "../organisms/Modal";
 
 interface CardProps {
   selected: string;
+  selectedCard: ProjectsDataProps[];
+  setSelectedCard: React.Dispatch<React.SetStateAction<ProjectsDataProps[]>>;
 }
 
-export default function Card({ selected }: CardProps) {
-  const filteredCard =
-    selected === "default" || selected === "All"
-      ? cardList
-      : cardList.filter((card) => card.tag === selected);
+export default function Card({
+  selected,
+  selectedCard,
+  setSelectedCard,
+}: CardProps) {
+  const [modal, setModal] = useState(false);
+  const [filteredCard, setFilteredCard] = useState<ProjectsDataProps[]>([]);
+
+  const modalHandler = (card: ProjectsDataProps) => {
+    setSelectedCard([card]);
+    setModal(true);
+  };
+
+  const modalCloseHandler: MouseEventHandler = () => {
+    setModal(false);
+  };
+
+  useEffect(() => {
+    if (selected === "default" || selected === "All") {
+      setFilteredCard(projectsData);
+    } else {
+      const filtered = projectsData.filter((card) =>
+        card.isTeam ? selected === "Team" : selected === "Personal"
+      );
+      setFilteredCard(filtered);
+    }
+
+    if (modal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [selected, modal]);
 
   return (
-    <CardStyle>
-      {filteredCard.map((card) => (
-        <li key={card.id}>
-          <CardInnerBlock>
-            <div>
-              <img src={card.thumbnail} alt="thumbnail image" />
-              <span
-                className={
-                  card.tag === "Experience"
-                    ? "blue"
-                    : card.tag === "Team"
-                    ? "yellow"
-                    : ""
-                }
-              >
-                {card.tag}
-              </span>
-            </div>
-            <div>
-              <span>{card.title}</span>
-              <span>{card.description}</span>
-              <span>
-                {card.skills.map((skill, idx) =>
-                  idx === card.skills.length - 1 ? skill : `${skill} | `
-                )}
-              </span>
-            </div>
-          </CardInnerBlock>
-        </li>
-      ))}
-    </CardStyle>
+    <>
+      {modal && (
+        <Modal
+          selectedCard={selectedCard}
+          modalCloseHandler={modalCloseHandler}
+        />
+      )}
+      <CardStyle>
+        {filteredCard
+          .sort((a, b) =>
+            Number(a.endDate.year) === Number(b.endDate.year)
+              ? Number(b.endDate.month) - Number(a.endDate.month) || b.id - a.id
+              : Number(b.endDate.year) - Number(a.endDate.year)
+          )
+          .map((card) => (
+            <li key={card.id} onClick={() => modalHandler(card)}>
+              <CardInnerBlock>
+                <div>
+                  <img src={card.thumbnail} alt="thumbnail image" />
+                  <span className={card.isTeam ? "yellow" : "blue"}>
+                    {card.isTeam ? "Team" : "Personal"}
+                  </span>
+                </div>
+                <div>
+                  <span>{card.title}</span>
+                  <span>{`${card.startDate.year}.${card.startDate.month} ~ ${card.endDate.year}.${card.endDate.month}`}</span>
+                  <span>{card.description}</span>
+                  <span>
+                    {card.skills.map((skill, idx) =>
+                      idx === card.skills.length - 1 ? skill : `${skill} | `
+                    )}
+                  </span>
+                </div>
+              </CardInnerBlock>
+            </li>
+          ))}
+      </CardStyle>
+    </>
   );
 }
 
@@ -112,7 +151,7 @@ const CardInnerBlock = styled.div`
     }
 
     & > span.yellow {
-      background-color: #fab95d;
+      background-color: #febc2e;
     }
   }
 
@@ -128,6 +167,7 @@ const CardInnerBlock = styled.div`
 
     & > span {
       font-size: 12px;
+      line-height: 1.5;
     }
 
     & > span:first-child {
@@ -135,18 +175,18 @@ const CardInnerBlock = styled.div`
       font-weight: 600;
     }
 
-    & > span:nth-child(2) {
-      line-height: 1.5;
-    }
-
+    & > span:nth-child(2),
+    & > span:nth-child(3),
     & > span:last-child {
-      display: block;
-      padding: 5px 10px;
       background-color: #ddd;
+      padding: 5px 10px;
       border-radius: 10px;
       font-weight: 500;
-      margin-top: 5px;
-      line-height: 1.5;
+    }
+
+    & > span:nth-child(3) {
+      background-color: #222;
+      color: #eee;
     }
   }
 

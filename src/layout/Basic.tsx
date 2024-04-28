@@ -10,7 +10,6 @@ import Footer from "@/components/organisms/Footer";
 export default function Basic() {
   const location = useLocation();
   const path = location.pathname;
-
   const [$openMenu, setOpenMenu] = useState(false);
 
   return (

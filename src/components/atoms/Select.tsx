@@ -1,13 +1,20 @@
+import { ProjectsDataProps } from "@/data/projectsData";
 import styled from "styled-components";
 
 interface SelectProps {
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedCard: React.Dispatch<React.SetStateAction<ProjectsDataProps[]>>;
 }
 
-export default function Select({ selected, setSelected }: SelectProps) {
+export default function Select({
+  selected,
+  setSelected,
+  setSelectedCard,
+}: SelectProps) {
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.target.value);
+    setSelectedCard([]);
   };
 
   return (
@@ -26,7 +33,7 @@ export default function Select({ selected, setSelected }: SelectProps) {
   );
 }
 
-const selectList = ["All", "Personal", "Team", "Experience"];
+const selectList = ["All", "Personal", "Team"];
 
 const SelectStyle = styled.div`
   position: relative;
