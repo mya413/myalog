@@ -43,6 +43,8 @@ export interface ProjectsDataProps {
     insight: string[];
   };
   link?: string | null;
+  deploy: string;
+  isDeploy: boolean;
 }
 
 export const projectsData: ProjectsDataProps[] = [
@@ -90,24 +92,41 @@ export const projectsData: ProjectsDataProps[] = [
           ],
         },
       ],
-      skillStack: ["Swiper.js", "Dayjs", "mySQL", "Dotenv", "Figma"],
+      skillStack: ["Swiper.js", "Dayjs", "Dotenv", "Figma"],
       skillDesc: [
         "퍼블리싱을 진행하며 슬라이드 라이브러리를 활용해보고 싶었고, 순수 CSS로 작성하는 것 보다 업무 효율을 더 빠르게 높일 수 있을 것 같아 Swiper.js를 채택",
       ],
       issue: [
         {
-          problem: "문제발생",
-          cause: "문제원인/현상",
-          try: ["시도한것들1", "시도한것들2"],
+          problem:
+            "무한 캐러셀 슬라이드의 progressbar가 첫번째 슬라이드에서만 작동하고, 그 이후 슬라이드에서는 작동하지 않는 문제",
+          cause:
+            "각 슬라이드에 대한 참조 대상이 지정되어있지 않아 첫번째 슬라이드에서는 작동하지만, 그 다음 슬라이드에서부터 작동하지 않는 위와 같은 문제가 발생",
+          try: [
+            "useRef를 활용하여 progressbar를 대상으로 지정",
+            "onAutoplayTimeLeft 속성에 함수를 생성하여 percentage 파라미터를 통해 요소의 스타일을 width 값 percentage로 지정하여 슬라이드가 변경될 때마다 스타일이 자동 실행될 수 있도록 설정",
+          ],
         },
         {
-          problem: "문제발생",
-          cause: "문제원인/현상",
-          try: ["시도한것들1", "시도한것들2"],
+          problem:
+            "숫자 카운팅 애니메이션이 구현된 페이지가 렌더링 된 후, useCountNumber 커스텀 훅이 바로 실행되는 문제",
+          cause:
+            "렌더링 되었을 때가 아닌 스크롤 이벤트가 발생했을 때 이미 숫자 카운팅 애니메이션이 발동되어 있어 위와 같은 문제가 발생",
+          try: [
+            "스크롤 이벤트가 아닌, useRef를 통해 이 타겟 요소가 트리거가 될 수 있도록 설정",
+            "useEffect를 통해 관찰 대상이 화면에서 사라지고 언마운트 될 경우 관찰을 해제하고, clearInterval()을 통해 콜백 함수도 클리어될 수 있도록 구현",
+          ],
         },
       ],
-      insight: [],
+      insight: [
+        "Styled-components보다 Tailwind CSS가 Next.js와 더 궁합이 잘 맞기도 하고, 실제로 더 쓰라고 권유하기도 하는데, 프로젝트 중간에 투입되어 기술 채택 이유에 대한 명확한 설명을 들을 수 없어 아쉬웠음",
+        "주업무가 퍼블리싱이기에 프론트엔드 소스를 많이 접하진 못했지만, 커스텀 훅을 생성하면서 적은 비중이라도 React-query를 조금이나마 경험할 수 있어서 좋았음",
+        "Next.js의 라우팅 작동 방식을 이해할 수 있는 기회였고, Next.js에 대해 더 경험하고 싶다는 생각이 든 계기가 되었음",
+        "퍼블리싱 외에 클라이언트와 서버 작업이 추가적으로 더 필요한 상황이라 아직 배포가 안된 것이 아쉬움",
+      ],
     },
+    deploy: "",
+    isDeploy: false,
   },
   {
     id: 2,
@@ -137,59 +156,86 @@ export const projectsData: ProjectsDataProps[] = [
           desc: [
             "createObjectURL를 활용하여 변경될 상품 이미지 미리보기 구현",
             "revokeObjectURL를 활용하여 스택에서 이미지를 제거하고, 메모리 관리",
-            "Blob 객체와 FormData 객체에 이미지 데이터를 담아 서버에 post/patch 요청",
+            "Blob 객체와 FormData 객체에 이미지 데이터를 담아 Axios를 통해 서버에 post 또는 patch 요청",
+            "최대 등록 가능 이미지를 5개로 설정하고, useRef와 useState를 활용하여 상품 조회 시 썸네일로 사용할 대표 이미지 1개를 설정할 수 있는 핸들러 함수를 통해 상태를 업데이트",
           ],
         },
         {
           title: "CRUD 구현",
           desc: [
-            "Axios를 활용하여 서버에 각 요청을 보냄",
-            "메인 페이지, 관리자 페이지(공지사항, 상품 등록 및 수정) CRUD 구현",
-          ],
-        },
-        {
-          title: "AWS S3, CloudFront 클라이언트 배포",
-          desc: [
-            "AWS S3 버킷을 생성하여 클라이언트 정적 배포 진행",
-            "Github Actions를 활용하여 배포 자동화 진행",
+            "REST API로 설계된 JSON 데이터를 Axios를 활용하여 서버에 각 요청과 응답을 통해 UI를 구현",
+            "메인 페이지, 관리자 페이지(공지사항 페이지 / 상품 등록 및 수정) CRUD 구현",
+            "React-quill을 통해 텍스트 및 이미지 데이터를 입력할 수 있도록 구현",
+            "첨부된 이미지 데이터는 base64로 인코딩 되어 서버에 저장하기 어려움. 이미지 첨부 이벤트 핸들러를 생성하여, 이벤트 발생 시 서버에 요청을 보내 응답으로 AWS S3 버킷 url을 받을 수 있도록 하고, img 태그의 src 속성을 통해 base64 대신 url을 삽입할 수 있도록 구현",
           ],
         },
         {
           title: "반응형 웹 레이아웃 구현",
           desc: [
-            "Tailwind CSS + CSS 미디어 쿼리를 사용하여 반응형 UI 구현",
-            "순수 CSS 기반 반응형 캐러셀 UI 구현",
+            "순수 CSS 기반 캐러셀 슬라이드 구현",
+            "Tailwind CSS + CSS 미디어 쿼리를 활용한 디바이스 너비에 따른 반응형 UI 구현",
+          ],
+        },
+        {
+          title: "AWS S3, CloudFront 클라이언트 배포",
+          desc: [
+            "AWS S3를 활용하여 클라이언트 정적 배포를 하는 버킷과 이미지 파일을 관리하는 버킷으로 2개 생성하여 관리",
+            "이미지 파일 캐싱 및 버킷 보안을 위해 CloudFront를 연동",
+            "Github Actions를 활용하여 배포 자동화 진행",
           ],
         },
       ],
       skillStack: [
         "AWS S3",
+        "CloudFront",
         "ESlint",
         "Prettier",
         "Craco",
         "PostCSS",
         "React-router-dom",
-        "Dompurify",
+        "React-quill",
+        "isomorphic-dompurify",
         "Recharts",
         "Figma",
         "Swagger",
       ],
-      skillDesc: [""],
+      skillDesc: [
+        "프로젝트의 기한이 이전 프로젝트보다 여유로워 새로운 기술을 적용시킬 수 있을 것 같았음. JavaScript를 사용하여 프로젝트를 진행했을 때보다 어떤 장점과 단점이 있는지 체감하고, 왜 협업 시 TypeScript를 사용하는지 알아보기 위해 TypeScript를 채택",
+        "관리자 페이지의 매출 내역 그래프 확인을 위해 차트 라이브러리를 선택해야 했고, 대중적이고 러닝커브가 비교적 낮은 Recharts를 채택",
+        "Swagger를 통해 API 명세서를 확인하기 위해 채택",
+      ],
       issue: [
         {
-          problem: "문제발생",
-          cause: "문제원인/현상",
-          try: ["시도한것들1", "시도한것들2"],
+          problem:
+            "배포를 하기 위해 필요한 패키지 설치 후 빌드 작업 중 발생한 문제",
+          cause:
+            "index.css 파일을 컴파일하기 위해 PostCSS 패키지를 설치하려고 하였지만, 패키지의 버전보다 TypeScript의 버전이 더 최신 버전이어서 위와 같은 문제 발생",
+          try: [
+            "package.json 내 TypeScript의 버전을 확인하거나, npx tsc -v 를 통해 버전 확인 후 npm i typescript@4.4.3 로 수동으로 버전을 다운그레이드 시킴",
+          ],
         },
         {
-          problem: "문제발생",
-          cause: "문제원인/현상",
-          try: ["시도한것들1", "시도한것들2"],
+          problem:
+            "Github Actions 배포자동화 작업 진행 중 발생한 out of memory 에러로 인해 빌드가 실패되는 문제",
+          cause:
+            "action에서 사용할 수 있는 메모리 heap 사이즈 부족하여 위와 같은 문제 발생",
+          try: [
+            "CI가 실행될 때 env와 workflow 파일 설정을 통해 max size를 설정할 수 있으나, 이것은 ram 사이즈를 일시적으로 늘리는 방법이므로 똑같은 에러가 다시 발생할 수 있음",
+            "배포자동화 작업을 후순위로 미뤄두고 일주일에 한 번 팀원들과 상의하에 수동 빌드 작업 및 배포 진행",
+            "현재 사용되고 있지 않는 module을 제거하는 등의 관리",
+          ],
         },
       ],
-      insight: [],
+      insight: [
+        "TypeScript를 활용했을 때, method나 props가 자동완성되어 편리했고, 디버깅에 유리하여 다른 팀원의 컴포넌트로부터 받아오는 props를 활용했을 때 대비하기 좋았음",
+        "AWS S3와 CloudFront 연동을 통해 이미지 캐싱 과정을 경험하며 성능과 보안에 대한 중요성을 배웠고, S3 버킷과 어떤식으로 연동되어지는 지 알 수 있었음",
+        "클라이언트 배포 과정을 경험하면서 프로젝트 내부에서 불필요한 컴포넌트 및 모듈을 잘 관리해야한다는 것과 메모리 누수 및 메모리 관리의 중요성을 배울 수 있었음",
+      ],
     },
     link: "https://github.com/devstoreproject/devstore",
+    deploy:
+      "http://devstore-dev-deploy.s3-website.ap-northeast-2.amazonaws.com/",
+    isDeploy: false,
   },
   {
     id: 3,
@@ -273,7 +319,8 @@ export const projectsData: ProjectsDataProps[] = [
         "협업에서 더 강력한 힘을 발휘하는 TypeScript이지만, 마감 기한과 러닝 커브에 대한 부담감으로 JavaScript를 채택함, 팀원과의 충분한 회의를 통해 코드 컨벤션으로 변수명이나 타입을 정하여 개발이 원활히 진행될 수 있도록 함",
         "Tailwind CSS가 떠오르는 시점에, CSS-in-JS와의 차이점을 경험하고 싶고, 러닝 커브가 높지 않아보여 Tailwind CSS를 채택",
         "컴포넌트 간 데이터 상태를 주고받는 일이 잦아질 것 같아 상태 관리 라이브러리로 Redux를 채택하려 했으나, 미숙한 팀원이 있어 Redux에서 파생되었지만, 허들이 조금 낮은 Zustand로 채택",
-        "api 명세서는 완성되었지만, 서버단에서 api 개발이 늦어짐에 따라 클라이언트단에서 임시로 데이터와 요청할 api를 만들어 개발의 진행이 원활해질 수 있도록 MSW 채택",
+        "Postman을 통해 API 명세서를 확인하기 위해 채택",
+        "API 명세서는 완성되었지만, 서버단에서 API 개발이 늦어짐에 따라 클라이언트단에서 임시로 데이터와 요청할 API를 만들어 개발의 진행이 원활해질 수 있도록 MSW 채택",
       ],
       issue: [
         {
@@ -303,6 +350,8 @@ export const projectsData: ProjectsDataProps[] = [
       ],
     },
     link: "https://github.com/codestates-seb/seb42_main_012/tree/main",
+    deploy: "http://seb42main012.s3-website.ap-northeast-2.amazonaws.com/",
+    isDeploy: false,
   },
   {
     id: 4,
@@ -404,6 +453,8 @@ export const projectsData: ProjectsDataProps[] = [
       ],
     },
     link: "https://github.com/mya413/search-your-weather-kr",
+    deploy: "https://search-your-weather-kr.vercel.app/",
+    isDeploy: true,
   },
   {
     id: 5,
@@ -509,5 +560,7 @@ export const projectsData: ProjectsDataProps[] = [
       ],
     },
     link: "https://github.com/mya413/myalog",
+    deploy: "https://myalog.vercel.app/",
+    isDeploy: true,
   },
 ];

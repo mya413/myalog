@@ -48,7 +48,7 @@ export default function Item({ card }: ItemProps) {
 
 const ItemStyle = styled.section`
   position: relative;
-  height: 65%;
+  height: 60%;
 
   & > p {
     font-size: 12px;
@@ -58,14 +58,14 @@ const ItemStyle = styled.section`
   }
 
   @media screen and (max-width: 768px) {
-    height: 75%;
-  }
-
-  @media screen and (max-width: 440px) {
     height: 65%;
   }
 
+  @media screen and (max-width: 440px) {
+    height: 70%;
+  }
+
   @media screen and (max-width: 375px) {
-    height: 45%;
+    height: 40%;
   }
 `;

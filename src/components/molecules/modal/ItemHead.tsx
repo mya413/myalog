@@ -44,6 +44,20 @@ export default function ItemHead({
         </div>
       </div>
       <h3>{card.descDetail}</h3>
+      {card.isDeploy && card.deploy !== "" ? (
+        <h4>
+          🔗{" "}
+          <Link to={card.deploy} target="_blank">
+            {card.deploy}
+          </Link>
+        </h4>
+      ) : card.deploy === "" ? null : (
+        <h4 className="undeploy">
+          🔗 <span>{card.deploy}</span> 유지비용 이슈로 인해 현재 서버가 닫힌
+          상태입니다.
+        </h4>
+      )}
+
       <ItemHeadTabStyle>
         {contentsTitle.map((title, idx) => (
           <div
@@ -123,13 +137,30 @@ const ItemHeadStyle = styled.section`
     }
   }
 
-  & > h3 {
+  & > h3,
+  & > h4 {
     padding: 10px 15px;
     border-radius: 10px;
     background-color: #eee;
     color: #222;
-    font-size: 14px;
     line-height: 1.4;
+  }
+
+  & > h4 {
+    margin-top: 10px;
+    color: #999;
+    & > a {
+      color: #222;
+      text-decoration-line: underline;
+      text-decoration-thickness: 1.5px;
+      font-weight: 500;
+    }
+  }
+
+  & > h4.undeploy > span {
+    font-weight: 400;
+    color: #999;
+    text-decoration-line: line-through;
   }
 
   @media screen and (max-width: 768px) {
@@ -153,6 +184,11 @@ const ItemHeadStyle = styled.section`
     }
 
     & > h3 {
+      font-size: 12px;
+    }
+
+    & > h4 {
+      margin-top: 5px;
       font-size: 12px;
     }
   }
