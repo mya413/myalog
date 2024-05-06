@@ -19,14 +19,14 @@ export default function Header({ path }: HeaderType) {
         <div>
           <span>{`https://myalog.com${path === "/" ? "" : path}`}</span>
         </div>
-        <div>
+        {/* <div>
           <p>
             <span>Today</span>100
           </p>
           <p>
             <span>Total</span>1004
           </p>
-        </div>
+        </div> */}
       </HeaderBottomStyle>
     </HeaderStyle>
   );
